@@ -27,10 +27,10 @@ build_client:
   script:
     - cd client
     - npm run build
+    - mkdir -p ../server/html
     - rsync -av build/index.html ../server/html
-    - ls
-    - pwd
     - cp build/favicon.ico ../server/html/
+    - mkdir -p ../server/static
     - rsync -av build/static ../server/static
   tags:
     - aliyun1
