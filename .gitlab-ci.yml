@@ -42,7 +42,7 @@ build_server:
   artifacts:
     paths:
       - server.zip
-    exipres: 1d
+    expire_in: 1d
 
 deploy-server:
   stage: deploy
