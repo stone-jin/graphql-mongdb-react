@@ -51,8 +51,8 @@ deploy-server:
   script:
     - echo "hello"
     - mkdir -p ~/deploy/graphql-mongdb-angular
-    - unzip server.zip -d ~/deploy/graphql-mongdb-angular
+    - unzip -o server.zip -d ~/deploy/graphql-mongdb-angular
     - cd ~/deploy/graphql-mongdb-angular/server
-    - pm2 start app.js
+    - pm2 start app.jsg
   tags:
     - aliyun1
