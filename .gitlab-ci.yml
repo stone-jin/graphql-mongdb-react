@@ -40,7 +40,7 @@ build_server:
   tags:
     - aliyun1
   artifacts:
-    path:
+    paths:
       - server.zip
     exipres: 1d
 
