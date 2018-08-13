@@ -38,7 +38,7 @@ build_client:
 build_server:
   stage: build-server
   script:
-    - zip -rf server.zip server
+    - zip -r server.zip server
   tags:
     - aliyun1
   artifacts:
