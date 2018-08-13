@@ -10,7 +10,7 @@ import AuthorList from './components/AuthorList'
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: 'http://127.0.0.1:4000/graphql'
+  uri: '/graphql'
 })
 
 class App extends Component {
