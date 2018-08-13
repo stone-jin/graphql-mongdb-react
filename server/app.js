@@ -24,24 +24,24 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 app.use((req, res)=>{
-    let path = ''
+    let currentPath = ''
     if(req.path == '/'){
-        path = '/index.html'
+        currentPath = '/index.html'
     }else{
-        path = req.path
+        currentPath = req.path
     }
-    if(path.indexOf(".html") >=0){
+    if(currentPath.indexOf(".html") >=0){
         res.setHeader("Content-Type", "text/html; charset=utf-8")
-        return res.send(fs.readFileSync(path.join(__dirname, 'html', path), {encoding: 'utf-8'}));
-    }else if(path.indexOf("favicon.icon") >=0){
+        return res.send(fs.readFileSync(path.join(__dirname, 'html', currentPath), {encoding: 'utf-8'}));
+    }else if(currentPath.indexOf("favicon.icon") >=0){
         res.setHeader("Content-Type", "image/x-icon")
-        return res.send(fs.readFileSync(path.join(__dirname, 'html', path), {encoding: 'utf-8'}))
-    }else if(path.indexOf(".css")>=0){
+        return res.send(fs.readFileSync(path.join(__dirname, 'html', currentPath), {encoding: 'utf-8'}))
+    }else if(currentPath.indexOf(".css")>=0){
         res.setHeader("Content-Type", "text/css; charset=utf-8")
-        return res.send(fs.readFileSync(path.join(__dirname, path), {encoding: 'utf-8'}));
-    }else if(path.indexOf(".js") >=0){
+        return res.send(fs.readFileSync(path.join(__dirname, currentPath), {encoding: 'utf-8'}));
+    }else if(currentPath.indexOf(".js") >=0){
         res.setHeader("Content-Type", "application/javascript; charset=utf-8")
-        return res.send(fs.readFileSync(path.join(__dirname, path), {encoding: 'utf-8'}));
+        return res.send(fs.readFileSync(path.join(__dirname, currentPath), {encoding: 'utf-8'}));
     }
 })
 
