@@ -9,6 +9,8 @@ cache:
   path:
     - server/node_modules
     - client/node_modules
+    - server/html
+    - server/static
 
 install_dep:
   stage: install
@@ -17,6 +19,8 @@ install_dep:
     - npm install
     - cd ../client
     - npm install
+  tags:
+    - aliyun1
 
 build_client:
   stage: build-client
@@ -24,5 +28,25 @@ build_client:
     - cd client
     - npm run build
     - rsync -av build/index.html ../server/html
-    - rsync -av build/favicon.io ../server/favicon.io
+    - rsync -av build/favicon.ico ../server/html/favicon.ico
     - rsync -av build/static ../server/static
+  tags:
+    - aliyun1
+
+build_server:
+  stage: build-server
+  script:
+    - zip -rf server.zip server
+  tags:
+    - aliyun1
+  artifacts:
+    path:
+      - server.zip
+    exipres: 1d
+
+deploy-server:
+  stage: deploy
+  script:
+    - echo "hello"
+  tags:
+    - aliyun1
