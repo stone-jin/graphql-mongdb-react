@@ -31,7 +31,7 @@ build_client:
     - rsync -av build/index.html ../server/html
     - cp build/favicon.ico ../server/html/
     - mkdir -p ../server/static
-    - rsync -av build/static ../server/static
+    - rsync -av build/static/* ../server/static
   tags:
     - aliyun1
 
