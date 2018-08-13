@@ -52,7 +52,9 @@ deploy-server:
     - echo "hello"
     - mkdir -p ~/deploy/graphql-mongdb-angular
     - unzip -o server.zip -d ~/deploy/graphql-mongdb-angular
-    - cd ~/deploy/graphql-mongdb-angular/server
-    - pm2 start app.js
+    - rsync -av ~/deploy/graphql-mongdb-angular ~/app/graphql-mongdb-angular 
+    - cd ~/app/graphql-mongdb-angular 
+    - pm2 stop graphql-mongodb-react
+    - pm2 start app.js --name graphql-mongodb-react
   tags:
     - aliyun1
