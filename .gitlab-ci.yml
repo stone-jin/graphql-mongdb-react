@@ -28,7 +28,7 @@ build_client:
     - cd client
     - npm run build
     - rsync -av build/index.html ../server/html
-    - cp build/favicon.ico ../server/html/favicon.ico
+    - cp build/favicon.ico ../server/html/
     - rsync -av build/static ../server/static
   tags:
     - aliyun1
