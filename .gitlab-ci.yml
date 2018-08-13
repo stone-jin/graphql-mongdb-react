@@ -55,7 +55,7 @@ deploy-server:
     - mkdir -p ~/app/graphql-mongdb-angular 
     - rsync -av ~/deploy/graphql-mongdb-angular ~/app/graphql-mongdb-angular 
     - cd ~/app/graphql-mongdb-angular 
-    - pm2 stop graphql-mongodb-react
+    - pm2 stop graphql-mongodb-react || echo "graphql-mongodb-react is not exsit"
     - pm2 start app.js --name graphql-mongodb-react
   tags:
     - aliyun1
