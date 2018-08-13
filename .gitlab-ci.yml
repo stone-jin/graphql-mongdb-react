@@ -6,7 +6,7 @@ stages:
 
 cache:
   key: "$CI_PROJECT_NAME"
-  path:
+  paths:
     - server/node_modules
     - client/node_modules
     - server/html
