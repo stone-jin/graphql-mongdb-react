@@ -13,7 +13,7 @@ app.use(cors())
 
 // connect to mongodb database
 // make sure to replace my db string && creds width your own
-mongoose.connect("mongodb://127.0.0.1:27017/graphql");
+mongoose.connect("mongodb://127.0.0.1:27016/graphql");
 mongoose.connection.once('open', () => {
     console.log("connected to db")
 })
