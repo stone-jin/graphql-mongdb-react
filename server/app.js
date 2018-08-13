@@ -2,8 +2,12 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
+
+// allow cors
+app.use(cors())
 
 // connect to mongodb database
 // make sure to replace my db string && creds width your own
