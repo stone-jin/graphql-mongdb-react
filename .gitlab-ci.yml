@@ -1,0 +1,28 @@
+stages:
+  - install
+  - build-client
+  - build-server
+  - deploy
+
+cache:
+  key: "$CI_PROJECT_NAME"
+  path:
+    - server/node_modules
+    - client/node_modules
+
+install_dep:
+  stage: install
+  script:
+    - cd server
+    - npm install
+    - cd ../client
+    - npm install
+
+build_client:
+  stage: build-client
+  script:
+    - cd client
+    - npm run build
+    - rsync -av build/index.html ../server/html
+    - rsync -av build/favicon.io ../server/favicon.io
+    - rsync -av build/static ../server/static
