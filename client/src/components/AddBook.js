@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { graphql, compose } from 'react-apollo'
 import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../queries/queries'
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Form, Input, Select,  Button } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
