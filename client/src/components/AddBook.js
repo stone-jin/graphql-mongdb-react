@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import { graphql, compose } from 'react-apollo'
 import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../queries/queries'
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+
+const FormItem = Form.Item;
+const Option = Select.Option;
 
 class AddBook extends Component {
     constructor(props){
@@ -14,10 +18,10 @@ class AddBook extends Component {
     displayAuthors(){
         var data = this.props.getAuthorsQuery;
         if(data.loading){
-            return (<option>Loading Authors...</option>)
+            // return (<Option key="Loading" value="sss">Loading Authors...</Option>)
         }else{
             return data.authors.map(author=>{
-                return (<option key={author.id} value={author.id}>{author.name}</option>)
+                return (<Option key={author.id} value={author.id}>{author.name}</Option>)
             })
         }
     }
@@ -36,28 +40,73 @@ class AddBook extends Component {
         });
     }
 
+    changeName = (e)=>{
+       this.setState({name: e.target.value})
+    }
+    
+    changeContent = (e)=>{
+        this.setState({genre: e.target.value})
+    }
+
+    changeAuthor = (e)=>{
+        this.setState({authorId: e})
+    }
     render () {
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 },
+            }
+        };
+        const tailFormItemLayout = {
+            wrapperCol: {
+              xs: {
+                span: 24,
+                offset: 0,
+              },
+              sm: {
+                span: 16,
+                offset: 8,
+              },
+            },
+          };
         return (
             <div>
                 <hr/>
-                <form id="add-book" onSubmit={this.submitForm.bind(this)}>
-                    <div>
-                        <label>书籍名字:</label>
-                        <input type="text" onChange={(e)=>{this.setState({name: e.target.value})}}/>
-                    </div>
-                    <div>
-                        <label>内容:</label>
-                        <input type="text" onChange={(e)=>{this.setState({genre: e.target.value})}}/>
-                    </div>
-                    <div>
-                        <label>作者:</label>
-                        <select onChange={(e)=>{this.setState({authorId: e.target.value})}}>
-                            <option value="">请选择一个作者</option>
+                <Form onSubmit={this.submitForm.bind(this)}>
+                    <FormItem
+                        {...formItemLayout}
+                        label="书籍名字:"
+                        >
+                        <Input placeholder="请输入书籍的名字" onChange={this.changeName}/>
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label="内容:"
+                        >
+                        <Input placeholder="请输入书籍的介绍" onChange={this.changeContent}/>
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label="作者:"
+                        >
+                        <Select
+                            style={{ width: 200 }}
+                            placeholder="请选择一个作者"
+                            optionFilterProp="children"
+                            onChange={this.changeAuthor}
+                        >
                             {this.displayAuthors()}
-                        </select>
-                    </div>
-                    <button type="submit">添加</button>
-                </form>
+                        </Select>
+                    </FormItem>
+                    <FormItem {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit">添加</Button>
+                    </FormItem>
+                </Form>
             </div>
         );
     }
