@@ -28,6 +28,8 @@ class AddAuthor extends Component {
     render () {
         return (
             <div>
+                <hr/>
+                <h1>添加作者:</h1>
                 <form id="add-author" onSubmit={this.submitForm.bind(this)}>
                     <div>
                         <label>作者:</label>

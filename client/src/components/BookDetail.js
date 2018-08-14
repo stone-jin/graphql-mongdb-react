@@ -6,13 +6,14 @@ class BookDetail extends Component {
 
     displayBookDetail(){
         const book = this.props.data.book;
-        console.log(book)
         if(book){
             return (
                 <div>
-                    <h2>{book.name}</h2>
-                    <p>{book.genre}</p>
-                    <p>{book.author.name}</p>
+                    <h2>书籍: {book.name}</h2>
+                    <p>内容：{book.genre}</p>
+                    <p>作者: {book.author.name}</p>
+
+                    <p>作者的其他书籍:</p>
                     <ul className="other-books">
                         {
                             book.author.books.map(item=>{
@@ -32,10 +33,10 @@ class BookDetail extends Component {
     }
 
   render () {
-      console.log(this.props)
     return (
     <div id="book-detail">
-        <p>Ouput book details here</p>
+        <hr />
+        <p>所选图书的详情:</p>
         {this.displayBookDetail()}
     </div>
     );

@@ -39,13 +39,14 @@ class AddBook extends Component {
     render () {
         return (
             <div>
+                <hr/>
                 <form id="add-book" onSubmit={this.submitForm.bind(this)}>
                     <div>
-                        <label>Book Name:</label>
+                        <label>书籍名字:</label>
                         <input type="text" onChange={(e)=>{this.setState({name: e.target.value})}}/>
                     </div>
                     <div>
-                        <label>Book Name:</label>
+                        <label>内容:</label>
                         <input type="text" onChange={(e)=>{this.setState({genre: e.target.value})}}/>
                     </div>
                     <div>

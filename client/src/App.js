@@ -10,7 +10,7 @@ import AuthorList from './components/AuthorList'
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: '/graphql'
+  uri: 'http://localhost:4000/graphql'
 })
 
 class App extends Component {
@@ -18,13 +18,16 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div id="main">
-          <h1>Ninja's reading books</h1>
-          <BookList></BookList>
-          <AddBook></AddBook>
-          <h1>作者列表:</h1>
-          <AuthorList />
-          <h1>添加作者:</h1>
-          <AddAuthor/>
+          <div class="m-book">
+            <h1>查看的书籍:</h1>
+            <BookList></BookList>
+            <AddBook></AddBook>
+          </div>
+          <div class="m-author">
+            <h1>作者列表:</h1>
+            <AuthorList />
+            <AddAuthor/>
+          </div>
         </div>
       </ApolloProvider>
     );

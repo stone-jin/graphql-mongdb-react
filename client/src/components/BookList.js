@@ -15,19 +15,29 @@ class BookList extends Component {
     if(data.loading){
       return (<div>Loading books...</div>)
     }else{
-      return  data.books.map(book=>{
-        return (<li key={book.id} onClick={(e)=>{this.setState({selected: book.id})}}>{book.name}</li>)
-      })
+      if(data.books.length > 0){
+        return (
+          <ul id="book-list">
+            {
+              data.books.map(book=>{
+                return (<li key={book.id} onClick={(e)=>{this.setState({selected: book.id})}}>{book.name}</li>)
+              })
+            }
+          </ul>
+          )
+      }else{
+        return (<div>当前无书籍</div>)
+      }
     }
   }
 
   render () {
     return (
     <div>
-        <ul id="book-list">
-            {this.displayBooks()}
-        </ul>
-        <BookDetail bookId={this.state.selected}/>
+          {this.displayBooks()}
+          {
+            this.state.selected == null? '': <BookDetail bookId={this.state.selected}/>
+          }
     </div>
     );
   }
