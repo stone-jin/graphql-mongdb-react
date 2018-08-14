@@ -14,7 +14,7 @@ const { Header, Content, Sider } = Layout;
 
 // apollo client setup
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: './graphql'
 })
 
 class App extends Component {
