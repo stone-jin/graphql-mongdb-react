@@ -1,8 +1,7 @@
 const graphql = require('graphql');
 const _ = require('loadsh')
 const Author = require('../models/author')
-const Book = require('../models/web')
-
+const Book = require('../models/book')
 
 const {
     GraphQLObjectType,
@@ -16,7 +15,7 @@ const {
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
     fields: () => {
-        const { BookType } =require('./bookSchema')
+        const { BookType } =require('./bookSchema');
         return {
             id: {
                 type: GraphQLID
@@ -30,13 +29,14 @@ const AuthorType = new GraphQLObjectType({
             books: {
                 type: new GraphQLList(BookType),
                 resolve(parent, args) {
+                    console.log(parent.id);
                     return Book.find({
                         authorId: parent.id
-                    })
+                    });
                 }
             }
     }}
-})
+});
 
 let QueryFields = {
     author: {
@@ -70,17 +70,37 @@ let MutationFields = {
             },
         },
         resolve(parent, args) {
+            console.log(args);
             let author = new Author({
                 name: args.name,
                 age: args.age
             });
             return author.save();
         }
+    },
+    addOneAuthor: {
+        type: AuthorType,
+        args: {
+            name: {
+                type: new GraphQLNonNull(GraphQLString)
+            },
+            age: {
+                type: new GraphQLNonNull(GraphQLInt)
+            },
+        },
+        resolve(parent, args) {
+            console.log(args);
+            let author = new Author({
+                name: args.name,
+                age: 18
+            });
+            return author.save();
+        }
     }
-}
+};
 
 module.exports = {
     QueryFields: QueryFields,
     MutationFields: MutationFields,
     AuthorType: AuthorType
-}
+};

@@ -9,18 +9,18 @@ const path = require('path')
 const app = express();
 
 // allow cors
-app.use(cors())
+app.use(cors());
 
 // connect to mongodb database
 // make sure to replace my db string && creds width your own
-mongoose.connect("mongodb://127.0.0.1:27016/graphql");
+mongoose.connect("mongodb://127.0.0.1:32770/graphql");
 mongoose.connection.once('open', () => {
     console.log("connected to db")
-})
+});
 
 app.use('/graphql', graphqlHTTP({
     schema,
-    graphiql: true
+    graphiql: false
 }));
 
 app.use((req, res)=>{
@@ -43,7 +43,7 @@ app.use((req, res)=>{
         res.setHeader("Content-Type", "application/javascript; charset=utf-8")
         return res.send(fs.readFileSync(path.join(__dirname, currentPath), {encoding: 'utf-8'}));
     }
-})
+});
 
 app.listen(4000, () => {
     console.log('now listening for requests on port 4000');

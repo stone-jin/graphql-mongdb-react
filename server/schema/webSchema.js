@@ -11,6 +11,8 @@ const {
     GraphQLInt
 } = graphql;
 
+//
+// 1. 端口服务器管理系统,
 const WebType = new GraphQLObjectType({
     name: 'Web',
     fields: () => ({
